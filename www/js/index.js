@@ -134,6 +134,7 @@ var app = {
 			}
 			
 			function closeInAppBrowser(event) {
+				execinsideiap1("document.getElementById('preloader').style.display = 'block';document.getElementById('status').style.display = 'block';");
 				var extension = event.url.substr(event.url.lastIndexOf('.')+1);
 				if (event.url.match("/closeapp")) {
 					ref.close();
