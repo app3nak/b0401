@@ -40,7 +40,18 @@
 		<param name="SENDER_ID" value="973344420171" />
 	</plugin>	
     <gap:plugin name="hu.dpal.phonegap.plugins.uniquedeviceid" />
-        
+  	<gap:plugin name="cordova-plugin-customurlscheme" source="npm">
+	<param name="URL_SCHEME" value="ndhsguamapp" />	
+    <param name="HTTP_HOST" value="www.ndhsguam.com" />
+    <param name="HTTP_PATHPREFIX" value="www.ndhsguam.com" />
+    <param name="HTTPS_HOST" value="www.ndhsguam.com" />
+    <param name="HTTPS_PATHPREFIX" value="www.ndhsguam.com" />
+  </gap:plugin>
+    
+    <gap:config-file platform="android" parent="/manifest/application">
+        <activity android:launchMode="singleTop" />
+    </gap:config-file>
+    
     <icon src="icon.png"/>
     <icon src="res/icon/android/drawable-ldpi/ic_launcher.png" gap:platform="android" gap:qualifier="ldpi"/>
     <icon src="res/icon/android/drawable-mdpi/ic_launcher.png" gap:platform="android" gap:qualifier="mdpi"/>
