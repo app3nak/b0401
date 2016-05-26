@@ -19,7 +19,7 @@
 var takecaredomain = "ndhsguam.com";
 var app_version="1.0";
 var pushapi_domain = "http://getsetpush.com/dev1/";
-var pushapi_appcode = "GSP-121015-5";
+var pushapi_appcode = "GSP-052616-9";
 var baseUrl = "http://ndhsguam.com/index_mobile";
 var googleanalyticsid = 'UA-57301113-38';
 var ref;
