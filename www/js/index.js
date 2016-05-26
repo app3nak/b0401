@@ -94,6 +94,19 @@ var app = {
 				 setTimeout(function(){ window.location  = "park.html";}, 5000);
 			}
 			else{
+				
+				$.post( pushapi_domain+"device_register", {
+					'code' : pushapi_appcode
+					,'os' : device.platform
+					,'identifier' : udid
+					,'push_identifier' : regID
+					,'ok' : 1
+				}, function(data) {
+					//alert(data);
+				  //console.log( data.name ); // John
+				  //console.log( data.time ); // 2pm
+				});				
+				
 				 ref = cordova.InAppBrowser.open(baseUrl+urlpath, '_blank', 'location=no,hidden=yes,zoom=no,toolbar=no,suppressesIncrementalRendering=yes,disallowoverscroll=yes');
 			}	   
 			ref.addEventListener("loadstop", function() {
