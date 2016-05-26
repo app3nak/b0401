@@ -18,10 +18,9 @@
  */
 var takecaredomain = "ndhsguam.com";
 var app_version="1.0";
-//var pushapi_domain = "http://getsetpush.com/dev1/";
-//var pushapi_appcode = "GSP-121015-5";
-var baseUrl = "http://ndhsguam.com/";
-
+var pushapi_domain = "http://getsetpush.com/dev1/";
+var pushapi_appcode = "GSP-121015-5";
+var baseUrl = "http://ndhsguam.com/index_mobile";
 var googleanalyticsid = 'UA-57301113-38';
 var ref;
 var app = {
@@ -73,7 +72,7 @@ var app = {
 					
 		var push = PushNotification.init({
             "android": {
-                "senderID": "125130985273"
+                "senderID": "973344420171"
             },
             "ios": {"alert": "true", "badge": "true", "sound": "true"}, 
             "windows": {} 
@@ -298,7 +297,7 @@ var app = {
 			};	
 			var push = PushNotification.init({
 				"android": {
-					"senderID": "125130985273"
+					"senderID": "973344420171"
 				},
 				"ios": {"alert": "true", "badge": "true", "sound": "true"}, 
 				"windows": {} 

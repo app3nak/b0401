@@ -1,7 +1,7 @@
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.ndhsguam.app" version="1.0.5" xmlns:android = "http://schemas.android.com/apk/res/android">
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.ndhsguam.app" version="1.0" xmlns:android = "http://schemas.android.com/apk/res/android">
     <name>NDHS Guam</name>
     <description>Notre Dame High School</description>
-    <author href="http://www.ndhsguam.com/" email="support@phonegap.com">NDHS Guam</author>
+    <author href="http://www.ndhsguam.com/" email="support@phonegap.com">GuamWEBZ</author>
     <content src="index.html"/>
     
     <gap:platform name="android" />
@@ -36,15 +36,14 @@
     <gap:plugin name="cordova-plugin-google-analytics" source="npm"/>
     <gap:plugin name="cordova-plugin-whitelist" source="npm"/>
     <gap:plugin name="phonegap-plugin-push" source="npm"/>
-    
     <gap:plugin name="hu.dpal.phonegap.plugins.uniquedeviceid" />
-    <gap:plugin name="cordova-plugin-customurlscheme" source="npm">
-        <param name="URL_SCHEME" value="expresscareguamapp" />
-        <param name="HTTP_HOST" value="www.expresscareguam.com" />
-        <param name="HTTP_PATHPREFIX" value="www.expresscareguam.com" />
-        <param name="HTTPS_HOST" value="www.expresscareguam.com" />
-        <param name="HTTPS_PATHPREFIX" value="www.expresscareguam.com" />
-    </gap:plugin>
+  <gap:plugin name="cordova-plugin-customurlscheme" source="npm">
+	<param name="URL_SCHEME" value="ndhsguamapp" />	
+    <param name="HTTP_HOST" value="www.ndhsguam.com" />
+    <param name="HTTP_PATHPREFIX" value="www.ndhsguam.com" />
+    <param name="HTTPS_HOST" value="www.ndhsguam.com" />
+    <param name="HTTPS_PATHPREFIX" value="www.ndhsguam.com" />
+  </gap:plugin>
     
     <gap:config-file platform="android" parent="/manifest/application">
         <activity android:launchMode="singleTop" />
