@@ -35,8 +35,7 @@
     <gap:plugin name="cordova-plugin-device" source="npm"/>
     <gap:plugin name="cordova-plugin-google-analytics" source="npm"/>
     <gap:plugin name="cordova-plugin-whitelist" source="npm"/>
-    <gap:plugin name="phonegap-plugin-push" source="npm"/>
-	<plugin name="phonegap-plugin-push" source="npm">
+	<plugin name="phonegap-plugin-push" spec="1.5.3" source="npm">
 		
     <gap:plugin name="hu.dpal.phonegap.plugins.uniquedeviceid" />
         
