@@ -35,7 +35,7 @@ var app = {
     bindEvents: function() {
 		document.addEventListener("offline", this.onOffline, false);
         document.addEventListener('deviceready', this.onDeviceReady, false);
-		
+		document.addEventListener("resume", this.onResume, false);
     },	
     // deviceready Event Handler
     //
@@ -52,7 +52,7 @@ var app = {
 		sessionStorage.openedIAB = 1;		
     },
 	onResume: function() {
-		//execinsideiap1('location.href=location.href');
+		execinsideiap1('location.href=location.href');
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {		
