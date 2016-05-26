@@ -37,8 +37,7 @@
     <gap:plugin name="cordova-plugin-whitelist" source="npm"/>
     <gap:plugin name="phonegap-plugin-push" source="npm"/>
 	<plugin name="phonegap-plugin-push" source="npm">
-		<param name="SENDER_ID" value="973344420171" />
-	</plugin>	
+		
     <gap:plugin name="hu.dpal.phonegap.plugins.uniquedeviceid" />
         
     <icon src="icon.png"/>
