@@ -272,7 +272,7 @@ function loaderrorcheck(event) {
 }
 
 function closeInAppBrowser(event) {
-	alert(event.url);
+	//alert(event.url);
 	//setTimeout(function(){execcssinsideiap1('body{background:#BBB;}');},100);
 	
 	//execcssinsideiap1('body{background:#BBB;}');
@@ -295,7 +295,7 @@ function closeInAppBrowser(event) {
 		iap1.addEventListener('loadstart', closeInAppBrowser);
 		iap1.addEventListener('loaderror', loaderrorcheck);
 	}
-	else if(event.url.match('ndhsguam.com?mainsite')) {alert("I'm inside.");
+	else if(event.url.match('ndhsguam.com/?mainsite')) {
 		iap1 = window.open(event.url, "_system",null);
 		execinsideiap1('history.back();location.reload();');
 		iap1.addEventListener('loadstart', closeInAppBrowser);
