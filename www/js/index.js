@@ -16,16 +16,14 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-var expresscaredomain = "ndhsguam.com";
-var app_version="1.0.4";
-var baseUrl = "http://ndhsguam.com/index_mobile";
-var googleanalyticsid = 'UA-57301113-38';
-var google_project_id = "973344420171";
-var pushapi_domain = "http://getsetpush.com/dev1/";
-var pushapi_appcode = "GSP-052616-9";
-var ref;
-var urlParam = "";
+var takecaredomain = "new1.guamtaxiapp.com";
+var app_version="1.0";
+//var pushapi_domain = "http://getsetpush.com/dev1/";
+//var pushapi_appcode = "GSP-121015-5";
+var baseUrl = "http://new1.guamtaxiapp.com/";
 
+var googleanalyticsid = 'UA-57301113-30';
+var ref;
 var app = {
     // Application Constructor
     initialize: function() {
@@ -38,120 +36,253 @@ var app = {
     bindEvents: function() {
 		document.addEventListener("offline", this.onOffline, false);
         document.addEventListener('deviceready', this.onDeviceReady, false);
-		document.addEventListener("resume", this.onResume, false);
-    },
-	onOffline: function() {	
-		window.location  = "park.html";
-		//alert('Cannot connect to server!');
-		//navigator.app.exitApp();		
-    },
+		
+    },	
     // deviceready Event Handler
     //
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
-    onDeviceReady: function() {
+    onOffline: function() {	
+		window.location  = "park.html";
+		//alert('Cannot connect to server!');
+		//navigator.app.exitApp();		
+    },
+	onDeviceReady: function() {
 		
         app.receivedEvent('deviceready');
-		sessionStorage.openedIAB = 1;	
-		sessionStorage.page= undefined;		
+		sessionStorage.openedIAB = 1;		
     },
 	onResume: function() {
-		//setTimeout(function(){execcssinsideiap1('body{display:none;}');},100);
-		//execinsideiap1('location.reload();');
-		execinsideiap1('location.href=location.href');
+		//execinsideiap1('location.href=location.href');
     },
     // Update DOM on a Received Event
-    receivedEvent: function(id) {
+    receivedEvent: function(id) {		
+		
 		var isIABLoaded=0;
 		window.plugins.uniqueDeviceID.get(success, fail);
-		var udid;
-		function success(uuid)
-		{
-			//alert(uuid);
-			udid = uuid;
-		};
-		function fail()
-		{
-			alert("fail");
-		};	
-			
+			var udid;
+			function success(uuid)
+			{
+				//alert(uuid);
+				udid = uuid;
+			};
+			function fail()
+			{
+				alert("fail");
+			};					
+					
 		var push = PushNotification.init({
             "android": {
-                "senderID": google_project_id
+                "senderID": "1058864240814"
             },
             "ios": {"alert": "true", "badge": "true", "sound": "true"}, 
             "windows": {} 
         });
 		
-		push.on('registration', function(data) {
-            console.log("registration event");
+		
+        push.on('registration', function(data) {
+								
+            //console.log("registration event");
 			var regID = data.registrationId;
-            console.log(JSON.stringify(data));
+            //console.log(JSON.stringify(data));			
+			member_id='';
+			imageURI="";					
 			
-			var d = new Date();
-			var randomtime = d.getTime();
+			var urlpath = "?device="+device.model+"&device_id="+udid+"&device_version="+device.version+"&device_os="+device.platform+"&device_notification_id="+regID+"&app_version="+app_version+"&randomier="+$.now()+"&jump_to=";
 			
-			urlParam = "?device="+device.model+"&device_id="+udid+"&device_version="+device.version+"&device_os="+device.platform+"&device_notification_id="+regID+"&app_version="+app_version+"&randomier="+randomtime+"&jump_to=";
-		
-			var networkState = checkConnection();		
-			if (networkState == Connection.NONE) {				
-					setTimeout(function(){ window.location  = "park.html"; //alert('Cannot connect to server!');
-					}, 5000);
+			var networkState = checkConnection();
+			if (networkState == Connection.NONE) {
+				 setTimeout(function(){ window.location  = "park.html";}, 5000);
 			}
-			else{		
-				$.post( pushapi_domain+"device_register", {
-					'code' : pushapi_appcode
-					,'os' : device.platform
-					,'identifier' : udid
-					,'push_identifier' : regID
-					,'ok' : 1
-				}, function(data) {
-					//alert(data);
-				  //console.log( data.name ); // John
-				  //console.log( data.time ); // 2pm
-				});
+			else{
+				 ref = cordova.InAppBrowser.open(baseUrl+urlpath, '_blank', 'location=no,hidden=yes,zoom=no,toolbar=no,suppressesIncrementalRendering=yes,disallowoverscroll=yes');
+			}	   
+			ref.addEventListener("loadstop", function() {
+				if(isIABLoaded==0){
+					setTimeout(function(){ref.show();}, 3000);					
+					isIABLoaded=1;
+				}
 				
-				ref = cordova.InAppBrowser.open(baseUrl+urlParam, '_blank', 'location=no,hidden=yes,zoom=no,toolbar=no,suppressesIncrementalRendering=yes,disallowoverscroll=yes');
-				
-				ref.addEventListener("loadstop", function() {
-					if(isIABLoaded==0){
-						setTimeout(function(){ ;ref.show(); 
-							}, 5000);						
-						isIABLoaded=1;
-					}
-						//alert("loading stop");
-						 //navigator.notification.activityStop();				
-				});
-				
+			}); 			
 
-				ref.addEventListener("loadstart", closeInAppBrowser);
-				
-				ref.addEventListener("loaderror", loaderrorcheck);
-				ref.addEventListener('exit', function(event) {			
-					if (sessionStorage.openedIAB &&  sessionStorage.openedIAB == 1) {
-						sessionStorage.openedIAB = 0;
-						//navigator.app.exitApp(); 
-						if(navigator.app){
-							navigator.app.exitApp();
-						}else if(navigator.device){
-							navigator.device.exitApp();
-							
-						}
-					}
-				});
-				ref.addEventListener('exit', function(event) {			
-					if (sessionStorage.openedIAB &&  sessionStorage.openedIAB == 1) {
-						sessionStorage.openedIAB = 0;
-						navigator.app.exitApp(); 
-					}
-				});
-			}	 		
-						
-		});
+			ref.addEventListener("loadstart", closeInAppBrowser);
 		
-		push.on('notification', function(data) {
-        	console.log("notification event");
-            console.log(JSON.stringify(data));
+			ref.addEventListener("loaderror", loaderrorcheck);
+			function loaderrorcheck(event) {
+				if(event.url.match("tel:") || event.url.match("mailto:"))
+				{	
+					setTimeout(function(){execcssinsideiap1('body{display:none;}');},100);
+					execinsideiap1('history.back();');
+					setTimeout(function(){execcssinsideiap1('body{display:none;}');},100);
+					setTimeout(function(){execinsideiap1('location.reload(true);');},500);
+				}
+				else{
+					//alert('error: ' + event.url);	
+				}
+			}
+			
+			function closeInAppBrowser(event) {
+				var extension = event.url.substr(event.url.lastIndexOf('.')+1);
+				if (event.url.match("/closeapp")) {
+					ref.close();
+				}
+				else if(event.url.match("/upload_profile_pic")){
+					var pic_url=event.url;
+					pic_url=pic_url.split('/');
+					member_id = pic_url[pic_url.length-1];
+					if(device.platform=="iOS"){
+						ref.close();
+						getPhoto();
+					}
+					else{
+						setTimeout(function(){execcssinsideiap1('body{display:none;}');},100);
+						setTimeout(function(){getPhoto();},100);						
+						setTimeout(function(){execcssinsideiap1('body{display:none;}');},100);
+					}		
+							
+				}
+				else if(extension=="pdf" || extension=="docx" || extension=="xlsx"){
+					iap1 = window.open(event.url, "_system",null);
+					execinsideiap1('history.back();location.reload(true);');
+					iap1.addEventListener('loadstart', closeInAppBrowser);
+					iap1.addEventListener('loaderror', loaderrorcheck);
+				}
+				else if (!event.url.match(takecaredomain) && event.url!="" && !event.url.match("tel:")) {
+					iap1 = window.open(event.url, "_system",null);
+					execinsideiap1('history.back();location.reload();');
+					iap1.addEventListener('loadstart', closeInAppBrowser);
+					iap1.addEventListener('loaderror', loaderrorcheck);
+				}
+			};
+			function onPhotoURISuccess(imageURI) {
+			   uploadPhoto(imageURI);
+			}
+
+			function getPhoto() {			  
+				navigator.camera.getPicture(onPhotoURISuccess, onFail, {
+					quality: 50,
+					targetWidth: 600,
+					targetHeight: 600,
+					destinationType: navigator.camera.DestinationType.DATA_URL,
+					sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
+				});
+								 
+			}
+
+			function uploadPhoto(imageURI) {
+				if (!imageURI) {
+					alert('Please select an image first.');
+					return;
+				}
+				//set upload options
+				var options = new FileUploadOptions();
+				options.fileKey = "file";
+				options.fileName = imageURI.substr(imageURI.lastIndexOf('/')+1);
+				options.mimeType = "image/jpeg";
+				options.params = {
+					
+				}
+				if(device.platform!='iOS'){
+					setTimeout(function(){execcssinsideiap1('body{display:none;}');},100);
+				}
+				var data;
+				data={file:imageURI,member_id:member_id};
+				$.ajax({
+					type       : "POST",
+					url        : baseUrl+'front_users/upload_profile_pic',
+					crossDomain: true,
+					data: data,
+					contentType:"application/x-www-form-urlencoded",
+					success    : win,
+					error      : fail
+				});		
+			}
+
+			// Called if something bad happens.
+			function onFail(message) {
+				if(device.platform!="iOS"){
+					setTimeout(function(){execcssinsideiap1('body{display:none;}');},100);
+				}
+				setTimeout(function(){
+					alert('Failed because: ' + message);
+					if(device.platform=="iOS"){
+						reopenIAB();	
+					}
+					else{
+						execinsideiap1('history.back();');
+						setTimeout(function(){execcssinsideiap1('body{display:none;}');},100);
+						setTimeout(function(){execinsideiap1('location.reload(true);');},500);
+					}
+				},100);
+			}
+
+			function win(r) {					
+				setTimeout(function(){execcssinsideiap1('body{display:none;}');},100);
+				setTimeout(function(){
+					if(r=="success"){
+						alert("Your photo was uploaded successfully!"); 
+					}
+					else{
+						alert("Oops, there is some server problem in uploading photo, please try again."); 
+					}
+				},100);
+				setTimeout(function(){
+					if(device.platform=="iOS"){
+						reopenIAB();	
+					}
+					else{						
+						execinsideiap1('history.back();');
+						setTimeout(function(){execcssinsideiap1('body{display:none;}');},100);
+						setTimeout(function(){execinsideiap1('location.reload(true);');},500);
+					}	
+				},100);
+			}
+
+			function fail(error) {
+				if(device.platform!="iOS"){
+					setTimeout(function(){execcssinsideiap1('body{display:none;}');},100);
+				}
+				setTimeout(function(){
+					alert("An error has occurred: Code = " + error.code);
+					if(device.platform=="iOS"){
+						reopenIAB();	
+					}
+					else{
+						execinsideiap1('history.back();');
+						setTimeout(function(){execcssinsideiap1('body{display:none;}');},100);
+						setTimeout(function(){execinsideiap1('location.reload(true);');},500);
+					}
+				},100);
+			}
+			function reopenIAB(){
+				var ref = cordova.InAppBrowser.open(baseUrl+urlpath+'front_users/tc_card', '_blank', 'location=no,hidden=yes,zoom=no,toolbar=no,suppressesIncrementalRendering=yes,disallowoverscroll=yes,clearcache=yes,clearsessioncache=yes');
+				ref.addEventListener("loadstop", function() {
+						ref.show();
+				});
+				ref.addEventListener("loadstart", closeInAppBrowser);
+				ref.addEventListener("loaderror", loaderrorcheck);
+			}
+			function execinsideiap1(pcode) {
+				ref.executeScript({
+					code: pcode
+				}, function() {});
+			}
+			function execcssinsideiap1(pcode) {
+				ref.insertCSS({
+					code: pcode
+				}, function(
+				) {});
+			}		
+			
+			ref.addEventListener('exit', function(event) {			
+				if (sessionStorage.openedIAB &&  sessionStorage.openedIAB == 1) {
+					sessionStorage.openedIAB = 0;
+					navigator.app.exitApp(); 
+				}
+			});
+        });
+		
+        push.on('notification', function(data) {
 			var regID = "";
 			window.plugins.uniqueDeviceID.get(success, fail);
 			var udid;
@@ -163,84 +294,230 @@ var app = {
 			function fail()
 			{
 				alert("fail");
+				
 			};	
 			var push = PushNotification.init({
 				"android": {
-					"senderID": google_project_id
+					"senderID": "1058864240814"
 				},
 				"ios": {"alert": "true", "badge": "true", "sound": "true"}, 
 				"windows": {} 
 			});
-           push.on('registration', function(data) {
-				var regID = data.registrationId;	
-				
-				var d = new Date();
-				var randomtime = d.getTime();	
-				
-				var param_url = "?device="+device.model+"&device_id="+udid+"&device_version="+device.version+"&device_os="+device.platform+"&device_notification_id="+regID+"&app_version="+app_version+"&randomier="+randomtime+"&jump_to=";	
-							
-				var jumptourl = baseUrl+param_url+allegatourl;
 			
-				var networkState = checkConnection();		
-				if (networkState == Connection.NONE) {				
-						setTimeout(function(){ window.location  = "park.html"; //alert('Cannot connect to server!');
-						}, 5000);
+           push.on('registration', function(data) {
+				 var regID = data.registrationId;			
+				var param_url = "?device="+device.model+"&device_id="+udid+"&device_version="+device.version+"&device_os="+device.platform+"&device_notification_id="+regID+"&app_version="+app_version+"&jump_to=";		
+							
+				var jumptourl = baseUrl+param_url+allegatourl;				
+						
+				var networkState = checkConnection();
+				if (networkState == Connection.NONE) {
+					 setTimeout(function(){ window.location  = "park.html";}, 5000);
+			
 				}
 				else{
+					//if(!jumptourl)
+						//alert(jumptourl);
 					
-					$.post( pushapi_domain+"device_register", {
-						'code' : pushapi_appcode
-						,'os' : device.platform
-						,'identifier' : udid
-						,'push_identifier' : regID
-						,'ok' : 1
-					}, function(data) {
-						//alert(data);
-					  //console.log( data.name ); // John
-					  //console.log( data.time ); // 2pm
-					});
+					var ref = cordova.InAppBrowser.open(jumptourl, '_blank', 'location=no,hidden=yes,zoom=no,toolbar=no,suppressesIncrementalRendering=yes,disallowoverscroll=yes');
+				}	   
+				ref.addEventListener("loadstop", function() {
+					if(isIABLoaded==0){
+						setTimeout(function(){ref.show();}, 3000);					
+						isIABLoaded=1;
+					}
 					
-					ref = cordova.InAppBrowser.open(jumptourl, '_blank', 'location=no,hidden=yes,zoom=no,toolbar=no,suppressesIncrementalRendering=yes,disallowoverscroll=yes');
-								   
-					ref.addEventListener("loadstop", function() {
-							ref.show();		
-							
-					}); 
-					
-					ref.addEventListener("loadstart", closeInAppBrowser);
+				}); 			
+
+				ref.addEventListener("loadstart", closeInAppBrowser);
 			
-					ref.addEventListener("loaderror", loaderrorcheck);
-					
-					ref.addEventListener('exit', function(event) {			
-						if (sessionStorage.openedIAB &&  sessionStorage.openedIAB == 1) {
-							sessionStorage.openedIAB = 0;
-							//navigator.app.exitApp(); 
-							if(navigator.app){
-								navigator.app.exitApp();
-							}else if(navigator.device){
-								navigator.device.exitApp();
+				ref.addEventListener("loaderror", loaderrorcheck);
+				function loaderrorcheck(event) {
+					if(event.url.match("tel:") || event.url.match("mailto:"))
+					{	
+						setTimeout(function(){execcssinsideiap1('body{display:none;}');},100);
+						execinsideiap1('history.back();');
+						setTimeout(function(){execcssinsideiap1('body{display:none;}');},100);
+						setTimeout(function(){execinsideiap1('location.reload(true);');},500);
+					}
+					else{
+						//alert('error: ' + event.url);	
+					}
+				}
+				
+				function closeInAppBrowser(event) {
+					var extension = event.url.substr(event.url.lastIndexOf('.')+1);
+					if (event.url.match("/closeapp")) {
+						ref.close();
+					}
+					else if(event.url.match("/upload_profile_pic")){
+						var pic_url=event.url;
+						pic_url=pic_url.split('/');
+						member_id = pic_url[pic_url.length-1];
+						if(device.platform=="iOS"){
+							ref.close();
+							getPhoto();
+						}
+						else{
+							setTimeout(function(){execcssinsideiap1('body{display:none;}');},100);
+							setTimeout(function(){getPhoto();},100);						
+							setTimeout(function(){execcssinsideiap1('body{display:none;}');},100);
+						}		
 								
-							}
-						}
+					}
+					else if(extension=="pdf" || extension=="docx" || extension=="xlsx"){
+						iap1 = window.open(event.url, "_system",null);
+						execinsideiap1('history.back();location.reload(true);');
+						iap1.addEventListener('loadstart', closeInAppBrowser);
+						iap1.addEventListener('loaderror', loaderrorcheck);
+					}
+					else if (!event.url.match(takecaredomain) && event.url!="" && !event.url.match("tel:")) {
+						iap1 = window.open(event.url, "_system",null);
+						execinsideiap1('history.back();location.reload();');
+						iap1.addEventListener('loadstart', closeInAppBrowser);
+						iap1.addEventListener('loaderror', loaderrorcheck);
+					}
+				};
+				function onPhotoURISuccess(imageURI) {
+				   uploadPhoto(imageURI);
+				}
+
+				function getPhoto() {			  
+					navigator.camera.getPicture(onPhotoURISuccess, onFail, {
+						quality: 50,
+						targetWidth: 600,
+						targetHeight: 600,
+						destinationType: navigator.camera.DestinationType.DATA_URL,
+						sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY
 					});
-					ref.addEventListener('exit', function(event) {			
-						if (sessionStorage.openedIAB &&  sessionStorage.openedIAB == 1) {
-							sessionStorage.openedIAB = 0;
-							navigator.app.exitApp(); 
+									 
+				}
+
+				function uploadPhoto(imageURI) {
+					if (!imageURI) {
+						alert('Please select an image first.');
+						return;
+					}
+					//set upload options
+					var options = new FileUploadOptions();
+					options.fileKey = "file";
+					options.fileName = imageURI.substr(imageURI.lastIndexOf('/')+1);
+					options.mimeType = "image/jpeg";
+					options.params = {
+						
+					}
+					if(device.platform!='iOS'){
+						setTimeout(function(){execcssinsideiap1('body{display:none;}');},100);
+					}
+					var data;
+					data={file:imageURI,member_id:member_id};
+					$.ajax({
+						type       : "POST",
+						url        : baseUrl+'front_users/upload_profile_pic',
+						crossDomain: true,
+						data: data,
+						contentType:"application/x-www-form-urlencoded",
+						success    : win,
+						error      : fail
+					});		
+				}
+
+				// Called if something bad happens.
+				function onFail(message) {
+					if(device.platform!="iOS"){
+						setTimeout(function(){execcssinsideiap1('body{display:none;}');},100);
+					}
+					setTimeout(function(){
+						alert('Failed because: ' + message);
+						if(device.platform=="iOS"){
+							reopenIAB();	
 						}
+						else{
+							execinsideiap1('history.back();');
+							setTimeout(function(){execcssinsideiap1('body{display:none;}');},100);
+							setTimeout(function(){execinsideiap1('location.reload(true);');},500);
+						}
+					},100);
+				}
+
+				function win(r) {					
+					setTimeout(function(){execcssinsideiap1('body{display:none;}');},100);
+					setTimeout(function(){
+						if(r=="success"){
+							alert("Your photo was uploaded successfully!"); 
+						}
+						else{
+							alert("Oops, there is some server problem in uploading photo, please try again."); 
+						}
+					},100);
+					setTimeout(function(){
+						if(device.platform=="iOS"){
+							reopenIAB();	
+						}
+						else{						
+							execinsideiap1('history.back();');
+							setTimeout(function(){execcssinsideiap1('body{display:none;}');},100);
+							setTimeout(function(){execinsideiap1('location.reload(true);');},500);
+						}	
+					},100);
+				}
+
+				function fail(error) {
+					if(device.platform!="iOS"){
+						setTimeout(function(){execcssinsideiap1('body{display:none;}');},100);
+					}
+					setTimeout(function(){
+						alert("An error has occurred: Code = " + error.code);
+						if(device.platform=="iOS"){
+							reopenIAB();	
+						}
+						else{
+							execinsideiap1('history.back();');
+							setTimeout(function(){execcssinsideiap1('body{display:none;}');},100);
+							setTimeout(function(){execinsideiap1('location.reload(true);');},500);
+						}
+					},100);
+				}
+				function reopenIAB(){
+					var ref = cordova.InAppBrowser.open(baseUrl+urlpath+'front_users/tc_card', '_blank', 'location=no,hidden=yes,zoom=no,toolbar=no,suppressesIncrementalRendering=yes,disallowoverscroll=yes,clearcache=yes, clearsessioncache=yes');
+					ref.addEventListener("loadstop", function() {
+							ref.show();
 					});
-				}				
+					ref.addEventListener("loadstart", closeInAppBrowser);
+					ref.addEventListener("loaderror", loaderrorcheck);
+				}
+				function execinsideiap1(pcode) {
+					ref.executeScript({
+						code: pcode
+					}, function() {});
+				}
+				function execcssinsideiap1(pcode) {
+					ref.insertCSS({
+						code: pcode
+					}, function(
+					) {});
+				}		
+				
+				ref.addEventListener('exit', function(event) {			
+					if (sessionStorage.openedIAB &&  sessionStorage.openedIAB == 1) {
+						sessionStorage.openedIAB = 0;
+						navigator.app.exitApp(); 
+					}
+				});
 			});
-		});
+			
+        });
 		
-		push.on('error', function(e) {
+        push.on('error', function(e) {
             console.log("push error");
         });	
-		
-		window.analytics.startTrackerWithId(googleanalyticsid);
+
+		/*window.analytics.startTrackerWithId(googleanalyticsid);
 		window.analytics.trackView('Home Screen');
-		window.analytics.trackEvent('Home', 'DeviceReady', 'Hits', 1); 
-    }	
+		window.analytics.trackEvent('Home', 'DeviceReady', 'Hits', 1);*/ 		
+		
+    }
+	
 };
 
 function checkConnection() {
@@ -253,77 +530,6 @@ function checkConnection() {
 	states[Connection.CELL_3G]  = 'Cell 3G connection';
 	states[Connection.CELL_4G]  = 'Cell 4G connection';
 	states[Connection.NONE]     = 'No network connection';
-						  
-	return networkState;
-			  
-}
-
-function loaderrorcheck(event) {
-	if(event.url.match("tel:") || event.url.match("mailto:"))
-	{	
-		setTimeout(function(){execcssinsideiap1('body{display:none;}');},100);
-		execinsideiap1('history.back();');
-		setTimeout(function(){execcssinsideiap1('body{display:none;}');},100);
-		setTimeout(function(){execinsideiap1('location.reload(true);');},500);
-	}
-	else{
-		//alert('error: ' + event.url);	
-	}
-}
-
-function closeInAppBrowser(event) {
-	//alert(event.url);
-	//setTimeout(function(){execcssinsideiap1('body{background:#BBB;}');},100);
-	
-	//execcssinsideiap1('body{background:#BBB;}');
-	//execinsideiap1('document.body.innerHTML = "";');
-	//document.getElementById('div1').style.display = 'block';
-	//#preloader, #status
-	execinsideiap1("document.getElementById('preloader').style.display = 'block';document.getElementById('status').style.display = 'block';");
-	
-	var extension = event.url.substr(event.url.lastIndexOf('.')+1);
-	if (event.url.match("/closeapp")) {
-		//alert(event.url.match("/closeapp"));
-		ref.close();
-	}
-	else if(extension=="pdf" || extension=="docx" || extension=="xlsx"){
-		var openpdf = confirm("Clicking this link will download the document to your device. You will need to re-enter the app by clicking the app icon on your device.");
-		if(openpdf==true){
-			iap1 = window.open(event.url, "_system",null);
-		}
-		execinsideiap1('history.back();location.reload(true);');
-		iap1.addEventListener('loadstart', closeInAppBrowser);
-		iap1.addEventListener('loaderror', loaderrorcheck);
-	}
-	else if (!event.url.match(expresscaredomain) && event.url!="" && !event.url.match("tel:")) {
-		iap1 = window.open(event.url, "_system",null);
-		execinsideiap1('history.back();location.reload();');
-		iap1.addEventListener('loadstart', closeInAppBrowser);
-		iap1.addEventListener('loaderror', loaderrorcheck);
-	}
-};
-function execinsideiap1(pcode) {
-	ref.executeScript({
-		code: pcode
-	}, function() {});
-}
-function execcssinsideiap1(pcode) {
-		ref.insertCSS({
-			code: pcode
-		}, function(
-		) {});
-}
-
-function handleOpenURL(url) {
-  setTimeout(function() {
-	//alert("received url: " + url);
-	ref = cordova.InAppBrowser.open(baseUrl, '_blank', 'location=no,hidden=yes,zoom=no,toolbar=no');
-  }, 0);
-}
-
-function execcssinsideiap1(pcode) {
-	ref.insertCSS({
-		code: pcode
-	}, function(
-	) {});
+		  
+	return networkState          
 }
