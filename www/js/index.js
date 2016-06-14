@@ -17,7 +17,7 @@
  * under the License.
  */
 var expresscaredomain = "ndhsguam.com";
-var app_version="1.0.4";
+var app_version="1.0.7";
 var baseUrl = "http://ndhsguam.com/index_mobile";
 var googleanalyticsid = 'UA-57301113-38';
 var google_project_id = "973344420171";
