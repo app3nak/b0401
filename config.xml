@@ -1,4 +1,4 @@
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.ndhsguam.app" version="1.0.7" xmlns:android = "http://schemas.android.com/apk/res/android">
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.ndhsguam.app" version="1.0.8" xmlns:android = "http://schemas.android.com/apk/res/android">
     <name>NDHS Guam</name>
     <description>Notre Dame High School</description>
     <author href="http://www.ndhsguam.com/" email="support@phonegap.com">GuamWEBZ</author>
