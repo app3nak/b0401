@@ -8,7 +8,7 @@
     <gap:platform name="ios" />
     <gap:platform name="winphone" />
 	
-	<preference name="phonegap-version" value="cli-6.1.0" />    
+	<preference name="phonegap-version" />    
     <preference name="permissions" value="none"/>
     <preference name="orientation" value="portrait"/>
     <preference name="target-device" value="universal"/>
