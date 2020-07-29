@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>973344420171-k130ijfqp847s8cp3vsuirmtb29ohgnk.apps.googleusercontent.com</string>
+	<string>973344420171-h8706mi8uljsdc18p7tm53e4mnp4f9gi.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.973344420171-k130ijfqp847s8cp3vsuirmtb29ohgnk</string>
+	<string>com.googleusercontent.apps.973344420171-h8706mi8uljsdc18p7tm53e4mnp4f9gi</string>
 	<key>API_KEY</key>
 	<string>AIzaSyDUuo0FHhlHjUc6pIHgmy1ZJsnPbA0Hh24</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>org.ghs.guam.app</string>
+	<string>com.ndhsguam.app</string>
 	<key>PROJECT_ID</key>
 	<string>ndhs-1323</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,7 +29,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:973344420171:ios:255ecc9ed999a2042778ce</string>
+	<string>1:973344420171:ios:5eb98ee8cafa0b562778ce</string>
 	<key>DATABASE_URL</key>
 	<string>https://ndhs-1323.firebaseio.com</string>
 </dict>

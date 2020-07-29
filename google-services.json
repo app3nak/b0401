@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:973344420171:android:7f4d7032dbf1b63c2778ce",
+        "mobilesdk_app_id": "1:973344420171:android:44beacf9df0f6b5d2778ce",
         "android_client_info": {
-          "package_name": "org.ghs.guam.app"
+          "package_name": "com.ndhsguam.app"
         }
       },
       "oauth_client": [
@@ -30,6 +30,13 @@
             {
               "client_id": "973344420171-j6e5l84fvtk0ph41vre9ngkc4o982a8a.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "973344420171-h8706mi8uljsdc18p7tm53e4mnp4f9gi.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ndhsguam.app"
+              }
             }
           ]
         }
