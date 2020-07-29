@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2014 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="format-detection" content="telephone=no" />
+<meta name="msapplication-tap-highlight" content="no" />
+<!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+<!--meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" /-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=medium-dpi, user-scalable=0" />
+<link rel="stylesheet" type="text/css" href="css/parkcss.css" />
+<title>Mobile App | NDHS</title>
+<script type="text/javascript">            
+			function handleOpenURL(url) {
+				setTimeout(function() {
+					// This function is triggered by the LaunchMyApp Plugin
+					//alert("received url: " + url);
+				}, 3000);
+			}
+        </script>
+</head>
+<body>
+<div class="nakinner">
+<!--<header>
+  <h2 class="text-center contacts"><span><img src="img/contact_icon.png"></span></h2>
+  <div id="contactinfo">
+    <div class="toggleblock">
+      <h3 class="text-center">Call Us !</h3>
+      <hr />
+      <br/>
+      <div class="phoneslide"> <span style="color:#e30646;">Agana:</span> <a class="green" href="tel:+6714772873">477-2873</a><br>
+        <br>
+        <span>Tamuning:</span> <a class="yellow" href="tel:+6716492873">649-2873</a><br>
+        <br>
+        <span style="color:#9d0db1;">Micronesia Mall:</span> <a  class="red" href="tel:+6716372873">637-2873</a><br>
+        
+        <br>
+
+</div>
+    </div>
+  </div>
+</header>-->
+<div class="header" style="text-align: center;">
+      <img src="css/mdhslogo.png">
+      </div>
+
+<div class="infocontent">
+	<div class="infocontent_inner">
+    	<div class="infocontent_inneritem">
+  <p>You will need Wifi/Network connection to use this app.</p>
+    <p>Connect to a network and<br/>please try again. </p>
+  <div class="appdiv"> <a class="againbtn" href="index.html">TRY OPENING APP AGAIN</a> </div>
+  </div>
+  </div>
+</div>
+</div>
+<br/>
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/1.7.1jquery.min.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript">           
+		jQuery('.contacts').click(function(){
+		jQuery('#contactinfo').slideToggle();
+	});	
+        </script>
+        <style>
+.header img{height: 40px;padding: 8px;}
+.header{background: rgb(5, 47, 131) none repeat scroll 0% 0%;border-bottom: 3px solid rgb(8, 123, 206);line-height: 0;}
+@media(max-width:320px){.logo.text-center{margin-top:5px;}.header img{height: 35px;padding: 5px;}}
+@media(min-width:321px) and (max-width:370px){.header img {height: 37px;padding: 5px;}}
+@media(min-height:540px) and (max-height:640px) {.header img {height: 45px;padding: 5px;}}
+@media(min-height:641px) and (max-height:800px) {.header img {height: 55px;padding: 8px;}}
+@media(min-height:801px) and (max-height:1000px) {.header img {height: 70px;padding: 8px;}}
+@media(min-height:1001px) and (max-height:1280px) {.header img {height: 70px;padding: 10px;}}
+@media(min-height:1281px) and (max-height:1600px) {.header img {height: 80px;padding: 15px;}}
+@media(min-height:1601px) and (max-height:1920px) {.header img {height: 90px;padding: 20px;}}
+        </style>
+</body>
+</html>

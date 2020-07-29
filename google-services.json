@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "973344420171",
+    "firebase_url": "https://ndhs-1323.firebaseio.com",
+    "project_id": "ndhs-1323",
+    "storage_bucket": "ndhs-1323.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:973344420171:android:7f4d7032dbf1b63c2778ce",
+        "android_client_info": {
+          "package_name": "org.ghs.guam.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "973344420171-j6e5l84fvtk0ph41vre9ngkc4o982a8a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjdOf2EPiULDxnZhQuzip730telrwxB6g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "973344420171-j6e5l84fvtk0ph41vre9ngkc4o982a8a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

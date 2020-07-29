@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>973344420171-k130ijfqp847s8cp3vsuirmtb29ohgnk.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.973344420171-k130ijfqp847s8cp3vsuirmtb29ohgnk</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDUuo0FHhlHjUc6pIHgmy1ZJsnPbA0Hh24</string>
+	<key>GCM_SENDER_ID</key>
+	<string>973344420171</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>org.ghs.guam.app</string>
+	<key>PROJECT_ID</key>
+	<string>ndhs-1323</string>
+	<key>STORAGE_BUCKET</key>
+	<string>ndhs-1323.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:973344420171:ios:255ecc9ed999a2042778ce</string>
+	<key>DATABASE_URL</key>
+	<string>https://ndhs-1323.firebaseio.com</string>
+</dict>
+</plist>

@@ -1,0 +1,56 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600);
+ *::before, *::after {
+ box-sizing: border-box;
+}
+html, body {height:100%;}
+img {max-width:100%;}
+a {text-decoration:none;}
+body {
+	-webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+	-webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+	-webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+	margin:0;
+	font-family:"Open Sans", sans-serif;
+	background: url(no-wifi-bg.jpg) no-repeat center center / 100% 100%;
+}
+.text-center {text-align:right; padding-right:15px;}
+
+header h2 img {vertical-align:text-bottom; cursor:pointer;}
+header h2 {margin:0;padding:4px 0px;font-weight:normal;font-size:24px;}
+header {padding:5px 0px;text-transform:uppercase;color:#fff;}
+.topbar img, .banner .bannerimg {float:left;width:100%;}
+.infocontent {position: absolute;top: 54%;width: 100%;}
+.infocontent_inner{display: block;position: relative;margin: auto;width: 75%;border: 2px solid rgb(255, 255, 255);padding: 6px 6px 16px 6px;text-align: center;background-color: rgba(40, 40, 40, 0.6);}
+.infocontent p {color:#fff;	font-size:14px;	font-weight:bold;	margin-bottom:10px;	width:100%;margin-top: 0; }
+.againbtn {color:#fff;	font-weight:bold;background-color: #052f83;padding:3px 12px;font-size:15px;border:2px solid #fff;border-radius:4px;}
+.appdiv {width:100%;}
+#contactinfo {display:none;z-index:111;position:relative;}
+.toggleblock {padding-left:8px;padding-right:8px;}
+.toggleblock h3 {color:#9D0DB1;}
+.toggleblock hr {color:#9D0DB1;}
+#contactinfo {background:#DCBBE1;width:100%;margin-top:6px;border-top:2px solid #fff;position:absolute;}
+.phoneslide a {float: right;}
+a.green {background: #E30646;border-radius: 3px;color: #ffffff;padding: 4px;}
+.phoneslide a {float: right;}
+a.yellow {background: #000 ;border-radius: 3px;color: #fff;padding: 4px;}
+a.red {background: #9D0DB1;border-radius: 3px;color: #ffffff;padding: 4px;}
+a.purple {background: #41176b none repeat scroll 0 0;border-radius: 3px;color: #ffffff;	padding: 4px;}
+.phoneslide {margin: auto;width: 290px;}
+.phoneslide span {float: left;text-transform:capitalize;font-size:19px; font-weight:bold;}
+
+
+@media all and (min-width:600px) and (max-width:800px) {
+.infocontent { top:60%; }
+.infocontent_inner {
+ 
+    padding: 20px;
+    
+}
+.infocontent p {margin-bottom:15px;}
+.infocontent_inner{ width:50%;}
+ }
+@media (min-width:768px){ 
+body {
+	
+}
+}

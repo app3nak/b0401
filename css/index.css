@@ -1,0 +1,103 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+body {
+	
+}
+
+
+
+/* Portrait layout (default) */
+.app {
+background: transparent url("../img/logo.png") no-repeat scroll center top;
+width: 225px;
+text-align: center;
+display: block;
+margin: 50px auto;
+}
+.app_inner{display: block;
+clear: both;
+padding-top: 225px;}
+/* Landscape layout (with min-width) */
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
+    .app {
+       
+    }
+}
+@media screen and (min-width:768px) and (max-width:800px) {
+.app1{display: table; margin:33% auto;}
+.app2{display: table-cell;}
+
+}
+@media screen and (min-width:980px) and (max-width:1024px) {
+.app1{display: table; margin:13% auto;}
+.app2{display: table-cell;}
+
+}
+
+h1 {
+    font-size:28px;
+    font-weight:bold;
+    margin:0px;
+    overflow:visible;
+    padding:0px;
+    text-align:center;
+	text-shadow: rgb(3, 3, 3) -4px 2px 0px;
+}
+
+p {
+    font-size:24px;
+    text-align:center;
+	background:url(../img/spinner.gif) no-repeat center center; height:160px; font-weight:bold; letter-spacing:1px; background-size:35%;
+}
+
+@keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+ 
+@-webkit-keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+ 
+.blink {
+    animation:fade 3000ms infinite;
+    -webkit-animation:fade 3000ms infinite;
+}
+.serious_text{ max-width:100%;}
+@media(max-width:767px){
+body{
+background:url(../img/jp_app_bg4.jpg) no-repeat center center !important; /* 170px x 200px */
+background-size:100% !important;
+background-position:top !important;
+}
+}
+@media(min-width:768px) and (max-width:1280px){
+body{
+background:url(../img/jp_app_bg5.jpg) no-repeat center center !important; /* 170px x 200px */
+background-size:100% !important;
+background-position:top !important;
+ }
+}
